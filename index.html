@@ -3,13 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">   <!-- TODO: Meta Description -->
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF"> <!-- TODO: Keywords -->
+        content="We introduce TactAR and Reactive Diffusion Policy (RDP) for visual-tactile policy learning.
+        TactAR is a low-cost and versatile teleoperation system which can provide real-time tactile / force feedback via Augmented Reality (AR).
+        Reactive Diffusion Policy (RDP) is a slow-fast imitation learning algorithm that can model complex behaviors with a slow policy network and achieve closed-loop control based on tactile / force feedback with a fast policy network.">   <!-- TODO: Meta Description -->
+  <meta name="keywords" content="RDP, Reactive Diffusion Policy, Slow-Fast Policy, Visual-Tactile Policy Learning, Contact-Rich Manipulation, Teleoperation, AR, Augmented Reality"> <!-- TODO: Keywords -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title> <!-- TODO: Website Title -->
+  <title>Reactive Diffusion Policy</title> <!-- TODO: Website Title -->
 
   <!-- For Google Analytical. It's optional! -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id="></script> -->
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -32,9 +34,11 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/custom.css">
   <link rel="icon" href="./static/images/favicon.png">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
@@ -42,47 +46,28 @@
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://robotflow.ai">
-        <img src="./static/images/logo.png" alt="RobotFlow" width="120" height="40">
-      <!-- <span class="icon">
-          <i class="fas fa-home"></i>
-      </span> -->
-      </a>
-
-      <!-- Optional: More Research
-        <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div> -->
-
+<div class="full-page-image">
+  <video id="bg-video" autoplay loop muted playsinline>
+      <source src="static/videos/full_screen.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+  <div class="full-page-title" style="padding: 0 20px">
+    <div class="is-size-1">
+    <span style="color:#047bff">R</span>eactive <span style="color:#047bff">D</span>iffusion <span style="color:#047bff">P</span>olicy:
+    Slow-Fast Visual-Tactile Policy Learning for Contact-Rich Manipulation
     </div>
-
+    <div class="is-size-3">
+    A data collection system and learning algorithm designed for responsive robotic manipulation.
+    </div>
   </div>
+  <div class="full-page-speed" style="padding: 0 20px">
+    <div class="is-size-1">
+    1X Speed
+    </div>
+  </div>
+</div>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
 </nav>
 
 <!-- TODO: Paper Info -->
@@ -91,8 +76,13 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
-          <div class="is-size-5 publication-authors">
+          <h1 class="title is-1 publication-title">
+            <span style="color:#047bff">R</span>eactive <span style="color:#047bff">D</span>iffusion <span style="color:#047bff">P</span>olicy:
+            <br>
+            <span class="is-size-2">Slow-Fast Visual-Tactile Policy Learning for Contact-Rich Manipulation</span>
+          </h1>
+          <h2 class="title is-5">In Submission</h2>
+          <!-- <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
             <span class="author-block">
@@ -117,12 +107,12 @@
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>University of Washington,</span>
             <span class="author-block"><sup>2</sup>Google Research</span>
-          </div>
+          </div> -->
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://arxiv.org/pdf/2011.12948"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -139,9 +129,9 @@
                   </span>
                   <span>arXiv</span>
                 </a>
-              </span>
+              </span> -->
               <!-- Video Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -149,9 +139,9 @@
                   </span>
                   <span>Video</span>
                 </a>
-              </span>
+              </span> -->
               <!-- Code Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://github.com/google/nerfies"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -159,16 +149,27 @@
                   </span>
                   <span>Code</span>
                   </a>
-              </span>
+              </span> -->
               <!-- Dataset Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://github.com/google/nerfies/releases/tag/0.1"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="far fa-images"></i>
+                    <img src="./static/images/hf.svg" alt="Hugging Face" style="width: 80%;">
                   </span>
                   <span>Data</span>
                   </a>
+              </span> -->
+              <!-- Checkpoints Link. -->
+              <!-- <span class="link-block">
+                <a href="https://drive.google.com/drive/folders/1G8Xe1nAwdZdKxN0e_cTOzcF63aQkxtN7?usp=sharing"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-google-drive"></i>
+                  </span>
+                  <span>Checkpoints</span>
+                  </a>
+              </span> -->
             </div>
 
           </div>
@@ -178,21 +179,37 @@
   </div>
 </section>
 
-<!-- TODO: Teaser -->>
+<!-- TODO: Teaser -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
+      <div id="teaser-carousel" class="carousel" data-slides-to-show="1">
+        <div class="item">
+          <video class="large-video" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/teaser/peel.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video class="large-video" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/teaser/wipe.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video class="large-video" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/teaser/lift.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
       <!-- If it is image
         <img id="teaser" height="100%" src="/path/to/image">
       -->
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
+        In three contact-rich evaluation tasks, 
+        RDP can promptly respond based on tactile / force feedback and successfully complete the task, 
+        even when faced with perturbations.
       </h2>
     </div>
   </div>
@@ -256,171 +273,689 @@
   </div>
 </section> -->
 
-<!--TODO: Abstract-->>
+
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
+        <!--TODO: Abstract-->
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
+            Humans can accomplish complex contact-rich tasks using vision and touch, 
+            with highly reactive capabilities such as quick adjustments to environmental changes and adaptive control of contact forces; 
+            however, this remains challenging for robots. 
+            Existing visual imitation learning (IL) approaches rely on action chunking to model complex behaviors, 
+            which lacks the ability to respond instantly to real-time tactile feedback during the chunk execution. 
+            Furthermore, most teleoperation systems struggle to provide fine-grained tactile / force feedback, 
+            which limits the range of tasks that can be performed. 
           </p>
           <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
+          To address these challenges, we introduce <strong>TactAR</strong>, 
+          a low-cost teleoperation system that provides real-time tactile feedback through Augmented Reality (AR), 
+          along with <strong>Reactive Diffusion Policy (RDP)</strong>, 
+          a novel slow-fast visual-tactile imitation learning algorithm for learning contact-rich manipulation skills. 
+          RDP employs a two-level hierarchy: 
+          <br>
+          <span style="display: block; margin-left: 20px;">(1) a slow latent diffusion policy for predicting high-level action chunks in latent space at low frequency,</span>
+          <span style="display: block; margin-left: 20px;">(2) a fast asymmetric tokenizer for closed-loop tactile feedback control at high frequency.</span>
+          This design enables both complex trajectory modeling and quick reactive behavior within a unified framework. 
           </p>
           <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
+          Through extensive evaluation across three challenging contact-rich tasks, 
+          RDP significantly improves performance  compared to state-of-the-art visual IL baselines through rapid response to tactile / force feedback. 
+          Furthermore, experiments show that RDP is applicable across different tactile / force sensors. 
           </p>
         </div>
+        <!--/ Abstract. -->
       </div>
     </div>
-    <!--/ Abstract. -->
+
 
     <!-- TODO: Paper video. -->
-    <div class="columns is-centered has-text-centered">
+    <!-- <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
+        <h2 class="title is-3">Summary Video</h2>
         <div class="publication-video">
           <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--/ Paper video. -->
   </div>
 </section>
 
-<!-- TODO: Learn Layout -->>
-<section class="section">
+<!-- Method. -->
+<section class="section">  
   <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
+        <h2 class="title is-3">Method</h2>
 
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
+        <!-- Overview. -->
+        <h3 class="title is-4">Overview</h3>
+        <div class="is-vcentered">
+          <img src="./static/images/overview.png"
+                alt="Overview of TactAR and RDP">
+        </div>
         <div class="content has-text-justified">
           <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
+            Fig. 1: <b>TactAR</b> is a low-cost and versatile teleoperation system which can provide real-time tactile / force feedback via Augmented Reality (AR). 
+            <b>Reactive Diffusion Policy (RDP)</b> is a slow-fast imitation learning algorithm that can model complex behaviors with a slow policy network and achieve closed-loop control based on tactile / force feedback with a fast policy network.
           </p>
         </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
         <br/>
-        <!--/ Interpolating. -->
+        <!--/ Overview. -->
 
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
+        <!-- Data Collection System. -->
+        <h3 class="title is-4">Data Collection System (TactAR)</h3>
+        <div class="is-vcentered">
+          <img src="./static/images/TactAR.png"
+                alt="Overview of TactAR">
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Fig. 2: Overview of <b>TactAR</b> teleoperation system. 
+            It can provide real-time tactile / force feedback via Augmented Reality (AR). 
+            The tactile feedback is represented as the 3D deformation field, 
+            which is a universal representation applicable to multiple different tactile / force sensors. 
+            The 3D deformation field is rendered and "attached" to the robot end-effector in AR, which makes the user perceive the rich contact information in 3D space. 
+            TactAR also support real-time streaming for multiple RGB cameras and optical tactile sensors.
+          </p>
+        </div>
+        
+        <div class="columns is-centered">
+          <!-- Calibration. -->
+          <div class="column">
+            <div class="content">
+              <h2 class="title is-5">Calibration</h2>
+              <p>
+                The user adjust the translation and rotation of the virtual coordinate system such that it
+                can align with the pre-defined TCP position (the white sphere) and the origin of the world coordinate system.
+              </p>
+              <video class="medium-video" controls muted playsinline height="100%">
+                <source src="./static/videos/tactar/calibration.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <!--/ Calibration. -->
+          <!-- Realtime Tactile Feedback in AR. -->
+          <div class="column">
+            <div class="content">
+              <h2 class="title is-5">Realtime Tactile Feedback in AR</h2>
+              <p>
+                The 3D deformation / force field of the tactile / force sensors
+                can be rendered in real time with Augmented Reality (AR). 
+              </p>
+              </br>
+              </br>
+              <video class="medium-video" controls muted playsinline height="100%">
+                <source src="./static/videos/tactar/realtime_tactile_feedback.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <!-- / Realtime Tactile Feedback in AR. -->
+        </div>
+        <div class="columns is-centered">
+          <!-- Attachment to Robot RCP. -->
+          <div class="column">
+            <div class="content">
+              <h2 class="title is-5">Attachment to Robot RCP</h2>
+              <p>
+                The 3D deformation field is attached to the
+                robot end-effector in virtual space.
+              </p>
+              </br>
+              <video class="medium-video" controls muted playsinline height="100%">
+                <source src="./static/videos/tactar/tcp_attachment.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <!--/ Attachment to Robot RCP. -->
+          <!-- Camera Streaming. -->
+          <div class="column content">
+            <div class="content">
+              <h2 class="title is-5">Camera Streaming</h2>
+              <p>
+                The system supports real-time streaming of multi-view RGB cameras 
+                and tactile cameras for more immersive teleoperation experience.
+              </p>
+              <video class="medium-video" controls muted playsinline height="100%">
+                <source src="./static/videos/tactar/camera_streaming.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <!-- / Camera Streaming. -->
+        </div>
+
+        <!-- Interpretability of the Tactile PCA Feature. -->
+        <!-- <h3 class="title is-5">Interpretability of the Tactile PCA Feature</h3>
         <div class="content has-text-justified">
           <p>
             Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
             viewpoint such as a stabilized camera by playing back the training deformations.
           </p>
+        </div> -->
+        <!-- / Interpretability of the Tactile PCA Feature. -->
+        <br/>
+        <!--/ Data Collection System. -->
+
+        <!-- Learning Algorithm. -->
+        <h3 class="title is-4">Learning Algorithm (RDP)</h3>
+        <div class="is-vcentered">
+          <img src="./static/images/RDP.png"
+                alt="Overview of RDP">
         </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
+        <div class="content has-text-justified">
+          <p>
+            Fig. 3: Overview of <b>Reactive Diffusion Policy (RDP)</b> framework.
+            (a) The training pipeline of RDP, comprising the fast policy learned through an Asymmetric Tokenizer (AT) and the slow policy via a Latent Diffusion Policy (LDP). 
+            The slow policy leverages low-frequency observations for modeling complex behaviors with diffusion and action chunking. 
+            The fast policy enables closed-loop control by using high-frequency tactile / force input and fine-tuning the latent action chunk predicted by the slow policy in an auto-regressive manner. 
+          </p>
+        </div>
+
+        <!-- Comparison among Various Pipelines. -->
+        <!-- <h3 class="title is-5">Comparison among Various Pipelines</h3>
+        <div class="content has-text-justified">
+          <p>
+            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
+            viewpoint such as a stabilized camera by playing back the training deformations.
+          </p>
+        </div> -->
+        <!-- / Comparison among Various Pipelines. -->
+
+        <!--/ Learning Algorithm. -->
+      </div>
+    </div>
+    <!--/ Method. -->
+  </div>
+</section>
+
+<!-- Experiments. -->
+<section class="section">  
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Experiments</h2>
+
+        <!-- Main Results. -->
+        <h3 class="title is-4">Main Results</h3>
+        <!-- Peeling. -->
+        <h3 class="title is-5">Task1: Peeling</h3>
+        <div class="content has-text-justified">
+          <p>
+            <b>Task Description:</b>
+            The robot needs to grasp the peeler, approach a cucumber held midair by a human hand, then begin peeling. 
+            This task requires the following capabilities:
+            <span style="display: block; margin-left: 20px;">(1) <b>Precision.</b> The robot needs to finish the task under environment uncertainties (<i>e.g.</i>, different tool grasp
+            locations, different cucumber pose) with high precision (millimeter-level).</span>
+            <span style="display: block; margin-left: 20px;">(2) <b>Fast response.</b> The robot needs to react instantly to human perturbations.</span>
+          </p>
+        </div> 
+        <div class="content has-text-centered" style="margin-bottom: 0px;">
+          <p>
+              TABLE I: Policy Performance for Peeling Task
+          </p>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <div class="table-container">
+              <table class="table is-fullwidth">
+                <thead>
+                  <tr>
+                    <th colspan="5"></th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th colspan="5"></th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <tr>
+                    <th class="border-right"></th>
+                    <th class="has-text-centered">No Perturb.</th>
+                    <th class="has-text-centered">Perturb. before Contact</th>
+                    <th class="has-text-centered border-right">Perturb. after Contact</th>
+                    <th class="has-text-centered">All</th>
+                  </tr>
+
+                  <tr>
+                    <th class="no-border-bottom border-right">DP</th>
+                    <td class="has-text-centered no-border-bottom">0.56</td>
+                    <td class="has-text-centered no-border-bottom">0.58</td>
+                    <td class="has-text-centered no-border-bottom border-right">0.19</td>
+                    <td class="has-text-centered no-border-bottom">0.45</td>
+                  </tr>
+                  <tr>
+                    <th class="no-border-bottom border-right">DP w. tactile img.</th>
+                    <td class="has-text-centered no-border-bottom">0</td>
+                    <td class="has-text-centered no-border-bottom">0.08</td>
+                    <td class="has-text-centered no-border-bottom border-right">0</td>
+                    <td class="has-text-centered no-border-bottom">0.03</td>
+                  </tr>
+                  <tr>
+                    <th class="border-right">DP w. tactile emb.</th>
+                    <td class="has-text-centered">0.48</td>
+                    <td class="has-text-centered">0.55</td>
+                    <td class="has-text-centered border-right">0.15</td>
+                    <td class="has-text-centered">0.39</td>
+                  </tr>
+
+                  <tr>
+                    <th class="no-border-bottom border-right">RDP (GelSight)</th>
+                    <td class="has-text-centered no-border-bottom">0.98</td>
+                    <td class="has-text-centered no-border-bottom">0.93</td>
+                    <td class="has-text-centered no-border-bottom border-right">0.8</td>
+                    <td class="has-text-centered no-border-bottom">0.9</td>
+                  </tr>
+                  <tr>
+                    <th class="no-border-bottom border-right">RDP (MCTac)</th>
+                    <td class="has-text-centered no-border-bottom"><b>1.0</b></td>
+                    <td class="has-text-centered no-border-bottom">0.84</td>
+                    <td class="has-text-centered no-border-bottom border-right">0.79</td>
+                    <td class="has-text-centered no-border-bottom">0.88</td>
+                  </tr>
+                  <tr>
+                    <th class="border-right">RDP (Force)</th>
+                    <td class="has-text-centered">0.99</td>
+                    <td class="has-text-centered"><b>0.98</b></td>
+                    <td class="has-text-centered border-right"><b>0.88</b></td>
+                    <td class="has-text-centered"><b>0.95</b></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+              <b>Video of all trials:</b>
+          </p>
+        </div>
+        <div class="content">
+          <video class="large-video" controls muted loop playsinline height="100%">
+            <source src="./static/videos/experiments/peel.mp4"
                     type="video/mp4">
           </video>
         </div>
-        <!--/ Re-rendering. -->
+        <!-- / Peeling. -->
+        
+        <!-- Wiping. -->
+        <h3 class="title is-5">Task2: Wiping</h3>
+        <div class="content has-text-justified">
+          <p>
+            <b>Task Description:</b>
+            The robot needs to grasp the eraser, approach the vase held midair by a human hand, then begin wiping. 
+            This task requires the following capabilities:
+            <span style="display: block; margin-left: 20px;">(1) <b>Adaptive force control with rotation.</b> The robot needs to adaptively track the curved vape surface with different
+            environment uncertainties (e.g., tool grasp locations, vase pose).</span>
+            <span style="display: block; margin-left: 20px;">(2) <b>Fast response.</b> The robot needs to react instantly to human perturbations.</span>
+          </p>
+        </div> 
+        <div class="content has-text-centered" style="margin-bottom: 0px;">
+          <p>
+              TABLE II: Policy Performance for Wiping Task
+          </p>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <div class="table-container">
+              <table class="table is-fullwidth">
+                <thead>
+                  <tr>
+                    <th colspan="5"></th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th colspan="5"></th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <tr>
+                    <th class="border-right"></th>
+                    <th class="has-text-centered">No Perturb.</th>
+                    <th class="has-text-centered">Perturb. before Contact</th>
+                    <th class="has-text-centered border-right">Perturb. after Contact</th>
+                    <th class="has-text-centered">All</th>
+                  </tr>
 
+                  <tr>
+                    <th class="no-border-bottom border-right">DP</th>
+                    <td class="has-text-centered no-border-bottom">0.9</td>
+                    <td class="has-text-centered no-border-bottom">0.6</td>
+                    <td class="has-text-centered no-border-bottom border-right">0.25</td>
+                    <td class="has-text-centered no-border-bottom">0.58</td>
+                  </tr>
+                  <tr>
+                    <th class="border-right border-right">DP w. tactile emb.</th>
+                    <td class="has-text-centered">0.7</td>
+                    <td class="has-text-centered">0.8</td>
+                    <td class="has-text-centered border-right">0.2</td>
+                    <td class="has-text-centered">0.57</td>
+                  </tr>
+
+                  <tr>
+                    <th class="no-border-bottom border-right">RDP (GelSight)</th>
+                    <td class="has-text-centered no-border-bottom">0.85</td>
+                    <td class="has-text-centered no-border-bottom"><b>0.95</b></td>
+                    <td class="has-text-centered no-border-bottom border-right">0.4</td>
+                    <td class="has-text-centered no-border-bottom">0.73</td>
+                  </tr>
+                  <tr>
+                    <th class="border-right">RDP (Force)</th>
+                    <td class="has-text-centered"><b>1.0</b></td>
+                    <td class="has-text-centered"><b>0.95</b></td>
+                    <td class="has-text-centered border-right"><b>0.75</b></td>
+                    <td class="has-text-centered"><b>0.9</b></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+              <b>Video of all trials:</b>
+          </p>
+        </div>
+        <div class="content">
+          <video class="large-video" controls muted loop playsinline height="100%">
+            <source src="./static/videos/experiments/wipe.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <!-- / Wiping. -->
+
+        <!-- Lifting. -->
+        <h3 class="title is-5">Task3: Lifting</h3>
+        <div class="content has-text-justified">
+          <p>
+            <b>Task Description:</b>
+            The two robot arms need to grasp the handlers, approach the paper cup, clamp the paper
+            cup with the two handlers, carefully lift the cup along the trajectory of the curve without squeezing it. 
+            This task requires the following capabilities: 
+            <span style="display: block; margin-left: 20px;">(1) <b>Precise force control.</b> The two robots must apply precise force during
+            the task execution. It is crucial to avoid exerting excessive force that could squeeze the cup while also ensuring that
+            the force is sufficient to prevent the cup from slipping.</span>
+            <span style="display: block; margin-left: 20px;">(2) <b>Bimanual coordination.</b></span>
+            <span style="display: block; margin-left: 20px;">(3) <b>Multi-modality.</b> In the expert data, there are two upward lift trajectories.</span>
+          </p>
+        </div> 
+        <div class="content has-text-centered" style="margin-bottom: 0px;">
+          <p>
+              TABLE III: Policy Performance for Bimanual Lifting Task
+          </p>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <div class="table-container">
+              <table class="table is-fullwidth">
+                <thead>
+                  <tr>
+                    <th colspan="8"></th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th colspan="8"></th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <tr>
+                    <th class="no-border-bottom border-right"></th>
+                    <th class="has-text-centered border-right" colspan="3">Soft Paper Cup</th>
+                    <th class="has-text-centered border-right" colspan="3">Hard Paper Cup</th>
+                    <th class="has-text-centered">All</th>
+                  </tr>
+                  <tr>
+                    <th class="border-right"></th>
+                    <th class="has-text-centered">Clamp</th>
+                    <th class="has-text-centered">Lift</th>
+                    <th class="has-text-centered border-right">Score</th>
+                    <th class="has-text-centered">Clamp</th>
+                    <th class="has-text-centered">Lift</th>
+                    <th class="has-text-centered border-right">Score</th>
+                    <th class="has-text-centered">Score</th>
+                  </tr>
+
+                  <tr>
+                    <th class="no-border-bottom  border-right">DP</th>
+                    <td class="has-text-centered no-border-bottom">0</td>
+                    <td class="has-text-centered no-border-bottom">0</td>
+                    <td class="has-text-centered no-border-bottom border-right">0</td>
+                    <td class="has-text-centered no-border-bottom">0</td>
+                    <td class="has-text-centered no-border-bottom">0</td>
+                    <td class="has-text-centered no-border-bottom border-right">0</td>
+                    <td class="has-text-centered no-border-bottom">0</td>
+                  </tr>
+                  <tr>
+                    <th class="border-right">DP w. tactile emb.</th>
+                    <td class="has-text-centered">10%</td>
+                    <td class="has-text-centered">10%</td>
+                    <td class="has-text-centered border-right">0.1</td>
+                    <td class="has-text-centered">20%</td>
+                    <td class="has-text-centered">10%</td>
+                    <td class="has-text-centered border-right">0.05</td>
+                    <td class="has-text-centered">0.08</td>
+                  </tr>
+
+                  <tr>
+                    <th class="no-border-bottom border-right">RDP (GelSight + MCTac)</th>
+                    <td class="has-text-centered no-border-bottom"><b>100%</b></td>
+                    <td class="has-text-centered no-border-bottom"><b>100%</b></td>
+                    <td class="has-text-centered no-border-bottom border-right">0.55</td>
+                    <td class="has-text-centered no-border-bottom"><b>90%</b></td>
+                    <td class="has-text-centered no-border-bottom">80%</td>
+                    <td class="has-text-centered no-border-bottom border-right">0.4</td>
+                    <td class="has-text-centered no-border-bottom">0.48</td>
+                  </tr>
+                  <tr>
+                    <th class="border-right">RDP (Force)</th>
+                    <td class="has-text-centered"><b>100%</b></td>
+                    <td class="has-text-centered">90%</td>
+                    <td class="has-text-centered border-right"><b>0.8</b></td>
+                    <td class="has-text-centered"><b>90%</b></td>
+                    <td class="has-text-centered"><b>90%</b></td>
+                    <td class="has-text-centered border-right"><b>0.6</b></td>
+                    <td class="has-text-centered"><b>0.7</b></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+              <b>Video of all trials:</b>
+          </p>
+        </div>
+        <div class="content">
+          <video class="large-video" controls muted loop playsinline height="100%">
+            <source src="./static/videos/experiments/lift.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <!-- / Lifting. -->
+        <br/>
+        <!--/ Main Results. -->
+
+        <!-- Visualization of the RDP Inference Process. -->
+        <h3 class="title is-4">Visualization of RDP Inference Process</h3>
+        <div class="content has-text-justified">
+          <p>
+            We visualize the original action predicted by the slow policy (<span style="color:#FF0000;">red</span> and <span style="color: #0000FF;">blue</span> dots) and 
+            the corrected action (<span style="color: #00FF00;">green</span> dots) predicted with tactile feedback by the fast network. 
+            The results show that the fast policy can utilize tactile information to 
+            achieve quick and accurate responses, thereby completing contact-rich tasks smoothly.
+          </p>
+          <p>
+            We obtain the original action through padding the initial tactile / force signal.
+            The corrected action has been scaled up to achieve clearer visual effects.
+          </p>
+        </div>
+
+        <div class="columns is-centered">
+          <!-- React with Tactile Feedback. -->
+          <div class="column is-4">
+            <div class="content">
+              <h2 class="title is-5">Case 1</h2>
+              <video class="small-video" controls muted playsinline height="100%">
+                <source src="./static/videos/visualization/tactile_feedback.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <!-- / React with Tactile Feedback. -->
+          <!-- Adaptive for Complex Surface. -->
+          <div class="column is-4">
+            <div class="content">
+              <h2 class="title is-5">Case 2</h2>
+              <video class="small-video" controls muted playsinline height="100%">
+                <source src="./static/videos/visualization/complex_surface.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <!-- / Adaptive for Complex Surface. -->
+          <!-- Precise Force Control. -->
+          <div class="column is-4">
+            <div class="content">
+              <h2 class="title is-5">Case 3</h2>
+              <video class="small-video" controls muted playsinline height="100%">
+                <source src="./static/videos/visualization/force_control.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <!-- / Precise Force Control. -->
+        </div>
+        </br>
+        <!-- / Visualization of the RDP Inference Process. -->
+
+        <!-- Failure Cases Analysis for Baseline Policies. -->
+        <h3 class="title is-4">Failure Cases Analysis of Baseline Policies</h3>
+        <!-- Lose Contract. -->
+        <h2 class="title is-5">Lose Contract</h2>
+        <div class="columns is-centered">
+          <div class="column">
+            <div class="content has-text-centered">
+              <p>
+                DP w. tactile emb.
+              </p>
+              <video class="medium-video" controls muted playsinline height="100%">
+                <source src="./static/videos/failure_case/peel_lose_contact.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="column">
+            <div class="content has-text-centered">
+              <p>
+                DP w. tactile emb.
+              </p>
+              <video class="medium-video" controls muted playsinline height="100%">
+                <source src="./static/videos/failure_case/wipe_lose_contact.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <!-- / Lose Contract. -->
+        <!-- Large Force. -->
+        <h2 class="title is-5">Large Force</h2>
+        <div class="columns is-centered">
+          <div class="column">
+            <div class="content has-text-centered">
+              <p>
+                DP w. tactile img.
+              </p>
+              <video class="medium-video" controls muted playsinline height="100%">
+                <source src="./static/videos/failure_case/peel_large_force.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="column">
+            <div class="content has-text-centered">
+              <p>
+                DP 
+              </p>
+              <video class="medium-video" controls muted playsinline height="100%">
+                <source src="./static/videos/failure_case/wipe_large_force.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="column">
+            <div class="content has-text-centered">
+              <p>
+                DP w. tactile emb. (temp. ens., \( \tau = 0.8 \))
+              </p>
+              <video class="medium-video" controls muted playsinline height="100%">
+                <source src="./static/videos/failure_case/wipe_over_smooth.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <!-- / Large Force. -->
+        <!-- Stuck. -->
+        <h2 class="title is-5">Stuck</h2>
+        <div class="columns is-centered">
+          <div class="column">
+            <div class="content has-text-centered">
+              <p>
+                DP w. tactile emb.
+              </p>
+              <video class="medium-video" controls muted playsinline height="100%">
+                <source src="./static/videos/failure_case/peel_stuck.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="column">
+            <div class="content has-text-centered">
+              <p>
+                DP w. tactile emb. (chunk size \(= 2\))
+              </p>
+              <video class="medium-video" controls muted playsinline height="100%">
+                <source src="./static/videos/failure_case/wipe_stuck.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="column">
+            <div class="content has-text-centered">
+              <p>
+                DP w. tactile emb. 
+              </p>
+              <video class="medium-video" controls muted playsinline height="100%">
+                <source src="./static/videos/failure_case/lift_stuck.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <!-- / Stuck. -->
+        <!-- / Analysis of Failure Cases in Baseline Policies. -->
       </div>
+
+
     </div>
-    <!--/ Animation. -->
-
-
+    <!--/ Method. -->
   </div>
 </section>
 
 <!-- TODO: BibTex -->
-<section class="section" id="BibTeX">
+<!-- <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{park2021nerfies,
@@ -430,7 +965,7 @@
   year      = {2021},
 }</code></pre>
   </div>
-</section>
+</section> -->
 
 
 <footer class="footer">
@@ -441,6 +976,8 @@
           <p>
             This website is modified from <a
               href="https://github.com/nerfies/nerfies.github.io">Nerfies Template</a>.
+            Some website materials are adapted from <a
+              href="https://transic-robot.github.io/">T<span style="font-variant-caps:all-small-caps;">RANSIC</span></a>.
           </p>
         </div>
       </div>
@@ -449,4 +986,7 @@
 </footer>
 
 </body>
+
+<script src="static/js/full_screen_video.js"></script>
+
 </html>
