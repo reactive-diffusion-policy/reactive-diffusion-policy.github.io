@@ -453,10 +453,14 @@
         </div>
         <div class="content has-text-justified">
           <p>
-            Fig. 3: Overview of <b>Reactive Diffusion Policy (RDP)</b> framework.
-            (a) The training pipeline of RDP, comprising the fast policy learned through an Asymmetric Tokenizer (AT) and the slow policy via a Latent Diffusion Policy (LDP). 
+            Fig. 3: Overview of <b>Reactive Diffusion Policy (RDP)</b> framework. 
+            (a) The training pipeline of RDP, 
+            comprising the first stage for training the fast policy (Asymmetric Tokenizer) and 
+            the second stage for training the slow policy (Latent Diffusion Policy). 
+            (b) The inference pipeline of RDP. 
             The slow policy leverages low-frequency observations for modeling complex behaviors with diffusion and action chunking. 
-            The fast policy enables closed-loop control by using high-frequency tactile / force input and fine-tuning the latent action chunk predicted by the slow policy in an auto-regressive manner. 
+            The fast policy enables closed-loop control by using high-frequency tactile / force input and fine-tuning the latent action chunk
+            predicted by the slow policy in an auto-regressive manner.
           </p>
         </div>
 
@@ -487,7 +491,7 @@
         <!-- Main Results. -->
         <h3 class="title is-4">Main Results</h3>
         <!-- Peeling. -->
-        <h3 class="title is-5">Task1: Peeling</h3>
+        <h3 class="title is-5" id="peeling experiments">Task1: Peeling</h3>
         <div class="content has-text-justified">
           <p>
             <b>Task Description:</b>
@@ -496,6 +500,22 @@
             <span style="display: block; margin-left: 20px;">(1) <b>Precision.</b> The robot needs to finish the task under environment uncertainties (<i>e.g.</i>, different tool grasp
             locations, different cucumber pose) with high precision (millimeter-level).</span>
             <span style="display: block; margin-left: 20px;">(2) <b>Fast response.</b> The robot needs to react instantly to human perturbations.</span>
+          </p>
+          <p>
+            <b>Evaluation Protocol:</b>
+            There are three test-time variations:
+            <span style="display: block; margin-left: 20px;">(1) No perturbation. 
+            The object is fixed with a random 6D pose in the air.</span>
+            <span style="display: block; margin-left: 20px;">(2) Perturbation before contact. 
+            The human evaluator will move the object right before the tool makes contact. </span>
+            <span style="display: block; margin-left: 20px;">(3) Perturbation after contact. 
+            The human evaluator will move the object after the tool makes contact to break the contact state.
+            We run 10 trials for each test-time variation. </span>
+          </p>
+          <p>
+            <b>Score Metric:</b>
+            We calculate the score based on the proportion of the peeled cucumber skin to the total length of the cucumber, 
+            normalized by the average score of the demonstration data.
           </p>
         </div> 
         <div class="content has-text-centered" style="margin-bottom: 0px;">
@@ -598,6 +618,17 @@
             environment uncertainties (e.g., tool grasp locations, vase pose).</span>
             <span style="display: block; margin-left: 20px;">(2) <b>Fast response.</b> The robot needs to react instantly to human perturbations.</span>
           </p>
+          <p>
+            <b>Evaluation Protocol:</b>
+            The same as <a href="#peeling experiments">Task1: Peeling</a>.
+          </p>
+          <p>
+            <b>Score Metric:</b>
+            We calculate the score based on the size of the remaining handwriting compared to the demonstration data. 
+            If the residue reaches the human demonstration level, the score is 1; 
+            If there is minor residue (less than one third of the handwriting length), the score is 0.5;
+            If significant residue remains, the score is 0.
+          </p>
         </div> 
         <div class="content has-text-centered" style="margin-bottom: 0px;">
           <p>
@@ -687,6 +718,21 @@
             the force is sufficient to prevent the cup from slipping.</span>
             <span style="display: block; margin-left: 20px;">(2) <b>Bimanual coordination.</b></span>
             <span style="display: block; margin-left: 20px;">(3) <b>Multi-modality.</b> In the expert data, there are two upward lift trajectories.</span>
+          </p>
+          <p>
+            <b>Evaluation Protocol:</b>
+            There are two test-time variations: 
+            <span style="display: block; margin-left: 20px;">(1) soft paper cup.</span>
+            <span style="display: block; margin-left: 20px;">(2) hard paper cup.</span>
+          </p>
+          <p>
+            <b>Score Metric:</b>
+            If the paper cup is lifted into the air following 
+            the designated trajectory without significant compression, 
+            the score will be 1; 
+            If the paper cup is partially compressed in the air, 
+            the score will be 0.5; 
+            If the cup is not lifted up, or dropped in the air, the score will be 0.
           </p>
         </div> 
         <div class="content has-text-centered" style="margin-bottom: 0px;">
@@ -791,8 +837,8 @@
         <h3 class="title is-4">Visualization of RDP Inference Process</h3>
         <div class="content has-text-justified">
           <p>
-            We visualize the original action predicted by the slow policy (<span style="color:#FF0000;">red</span> and <span style="color: #0000FF;">blue</span> dots) and 
-            the corrected action (<span style="color: #00FF00;">green</span> dots) predicted with tactile feedback by the fast network. 
+            We visualize the original action predicted by the slow policy (<span style="color:#ff5157;">red</span> and <span style="color: #007dff;">blue</span> dots) and 
+            the corrected action (<span style="color: #00eb70;">green</span> dots) predicted with tactile feedback by the fast network. 
             The results show that the fast policy can utilize tactile information to 
             achieve quick and accurate responses, thereby completing contact-rich tasks smoothly.
           </p>
