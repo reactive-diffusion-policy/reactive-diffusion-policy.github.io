@@ -25,7 +25,7 @@ body, html {
     z-index: 2;
 }
 
-.full-page-title {
+.first-page-title {
     /* Center your content vertically and horizontally */
     position: absolute;
     bottom: 10%;
@@ -36,7 +36,7 @@ body, html {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-#bg-video-speed {
+.first-page-video-speed {
     /* Center your content vertically and horizontally */
     position: absolute;
     top: 5%;

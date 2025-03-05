@@ -43,6 +43,8 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="static/js/full_screen_video.js"></script>
+  <script src="static/js/auto_resize_first_page_text.js"></script>
 </head>
 <body>
 
@@ -51,18 +53,18 @@
       <source src="static/videos/full_screen.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
-  <div class="full-page-title" style="padding: 0 20px">
-    <div class="is-size-1">
+  <div class="first-page-title" style="padding: 0 20px">
+    <div class="is-size-1" id="first-page-main-title-text">
     <span style="color:#047bff">R</span>eactive <span style="color:#047bff">D</span>iffusion <span style="color:#047bff">P</span>olicy:
     Slow-Fast Visual-Tactile Policy Learning for Contact-Rich Manipulation
     </div>
-    <div class="is-size-3">
+    <div class="is-size-3" id="first-page-sub-title-text">
     A data collection system and learning algorithm designed for contact-rich robotic manipulation.
     </div>
   </div>
-  <div id="bg-video-speed" style="padding: 0 20px">
-    <div class="is-size-1">
-    1X Speed
+  <div class="first-page-video-speed is-size-1" id="bg-video-speed" style="padding: 0 20px">
+    <div class="is-size-1" id="bg-video-speed-text">
+      1X Speed
     </div>
   </div>
 </div>
@@ -1057,7 +1059,5 @@
 </footer>
 
 </body>
-
-<script src="static/js/full_screen_video.js"></script>
 
 </html>
