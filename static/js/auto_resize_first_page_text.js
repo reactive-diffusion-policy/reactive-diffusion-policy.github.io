@@ -14,5 +14,7 @@ function resizeFirstPageText() {
     }
 }
 
-window.addEventListener('load', resizeFirstPageText);
-window.addEventListener('resize', resizeFirstPageText);
+document.addEventListener('DOMContentLoaded', function () {
+    resizeFirstPageText();
+    window.addEventListener('resize', resizeFirstPageText);
+});
