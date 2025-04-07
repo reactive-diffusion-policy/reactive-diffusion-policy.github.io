@@ -93,3 +93,8 @@ th.border-right {
 td.border-right {
     border-right: 1px solid #dbdbdb;
 }
+
+.chart-img {
+    width: 100%;
+    max-width: 650px;
+}

@@ -1041,7 +1041,76 @@
           </div>
         </div>
         <!-- / Get Stuck. -->
+        </br>
         <!-- / Analysis of Failure Cases in Baseline Policies. -->
+
+        <!-- How TactAR Improves Data Quality. -->
+        <h3 class="title is-4">How tactile / force feedback in TactAR Improves Policy Performance</h3>
+        <div class="content has-text-justified">
+          <p>
+            We conduct a user study and collect data from different teleoperation methods to 
+            investigate how tactile / force feedback in TactAR contributes to data quality and policy performance.
+          </p>
+        </div>
+
+        <!-- TactAR User Study. -->
+        <h4 class="title is-5">User Study</h4>
+        <div class="content has-text-justified">
+          <div class="has-text-centered">
+            <img class="chart-img" src="./static/images/tactar_data_quality/tactar_user_study.png"
+                  alt="TactAR User Study">
+          </div>
+          <p>
+            Fig. 5: We conduct a user study involving 10 users with different levels of experience
+            in VR teleoperation or Imitation Learning (IL).
+            Each pair of users participate in the experiments on the <em>Peeling</em> task, whereby
+            one user teleoperate the robotic arm to peel a cucumber and the other held the cucumber.
+            The teleoperator is subjected to two distinct settings: traditional VR teleoperation and TactAR.
+            The result indicates that most of the users (\(\ge\) 70%) found that tactile / force AR feedback is very helpful in data collection,
+            regardless of whether they were acting as the teleoperator or the person holding the cucumber.
+          </p>
+        </div>
+        <!-- / TactAR User Study. -->
+        <!-- Data Quality of Different Teleoperation Methods. -->
+        <h4 class="title is-5">Data Quality of Different Teleoperation Methods</h4>
+        <div class="content has-text-justified">
+          <div class="has-text-centered">
+            <img class="chart-img" src="./static/images/tactar_data_quality/teleop_data_quality.png"
+                  alt="Data Quality of Different Teleoperation Methods">
+          </div>
+          <p>
+            Fig. 6: During the user study, each user conducts 10 trials for traditional teleoperation and TactAR, respectively. 
+            We record the length of the cucumber peel obtained in each trial and 
+            assess whether the force applied by the robotic arm was consistently stable from the perspective of the user holding the cucumber. 
+            The result shows that  tactile / force feedback in TactAR can greatly improve the data quality 
+            from both the normalized peeling length (0.72 \(\rightarrow\) 0.91) and the ratio of stable contact force (0.58 \(\rightarrow\) 0.87).
+          </p>
+        </div>
+        <!-- / Data Quality of Different Teleoperation Methods. -->
+        <!-- Policy Performance with Different Teleoperation Methods. -->
+        <h4 class="title is-5">Policy Performance with Different Teleoperation Methods</h4>
+        <div class="content has-text-justified">
+          <div class="has-text-centered">
+            <img class="chart-img" src="./static/images/tactar_data_quality/teleop_policy_performance.png"
+                alt="Policy Performance with Different Teleoperation Methods">
+          </div>
+          <p>
+            Fig. 7: We collect the same number of demonstrations (60) for Peeling task
+            with traditional VR teleoperation without tactile / force feedback and 
+            train RDP (force) with these data.
+            The result demonstrates that data quality has a large influence on policy performance (the score decreases by more than 30%). 
+            We observe that policies trained with low-quality data exhibited more unstable performance,
+            such as more unstable force during peeling and a higher likelihood of breaking halfway through. 
+            A possible explanation is that the Fast Policy in RDP is designed to 
+            identify associations between tactile / force signals and trajectories from the data and learn reactive behavior. 
+            When contact forces in the data are highly unstable,
+            the Fast Policy struggles to identify reasonable associations, which reduces performance.
+          </p>
+        </div>
+        <!-- / Policy Performance with Different Teleoperation Methods. -->
+
+        <!-- / How TactAR Improves Data Quality. -->
+      
       </div>
 
 
