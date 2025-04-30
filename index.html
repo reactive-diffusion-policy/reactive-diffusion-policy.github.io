@@ -352,6 +352,28 @@
   </div>
 </section>
 
+<!-- Motivation. -->
+<section class="section">  
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Motivation</h2>
+        <div class="is-vcentered">
+          <img src="./static/gifs/motivation.gif"
+                alt="Motivation">
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Fig. 1: The motivation of this project is to combine the advantages of low-frequency visual imitation learning (IL) and high-frequency tactile / force controller.
+            We use a slow network which acts like a <strong>neural planner</strong> for predicting high-level action chunks,
+            while using a fast network which acts like a <strong>learnable impedance controller</strong> for finetuning the latent action chunks based with tactile / force feedback.
+          </p>
+        </div>
+    </div>
+    <!--/ Motivation. -->
+  </div>
+</section>
+
 <!-- Method. -->
 <section class="section">  
   <div class="container is-max-desktop">
@@ -367,7 +389,7 @@
         </div>
         <div class="content has-text-justified">
           <p>
-            Fig. 1: <strong>TactAR</strong> is a low-cost and versatile teleoperation system which can provide real-time tactile / force feedback via Augmented Reality (AR). 
+            Fig. 2: <strong>TactAR</strong> is a low-cost and versatile teleoperation system which can provide real-time tactile / force feedback via Augmented Reality (AR). 
             <strong>Reactive Diffusion Policy (RDP)</strong> is a slow-fast imitation learning algorithm that can model complex behaviors with a slow policy network and achieve closed-loop control based on tactile / force feedback with a fast policy network.
           </p>
         </div>
@@ -382,7 +404,7 @@
         </div>
         <div class="content has-text-justified">
           <p>
-            Fig. 2: Overview of <strong>TactAR</strong> teleoperation system. 
+            Fig. 3: Overview of <strong>TactAR</strong> teleoperation system. 
             It can provide real-time tactile / force feedback via Augmented Reality (AR). 
             The tactile feedback is represented as the 3D deformation field, 
             which is a universal representation applicable to multiple different tactile / force sensors. 
@@ -500,7 +522,7 @@
         </div>
         <div class="content has-text-justified">
           <p>
-            Fig. 3: Overview of <b>Reactive Diffusion Policy (RDP)</b> framework. 
+            Fig. 4: Overview of <b>Reactive Diffusion Policy (RDP)</b> framework. 
             (a) The training pipeline of RDP, 
             comprising the first stage for training the fast policy (Asymmetric Tokenizer) and 
             the second stage for training the slow policy (Latent Diffusion Policy). 
@@ -519,7 +541,7 @@
                   alt="Comparison among Various Pipelines">
           </div>
           <p>
-            Fig. 4: Comparison among various pipelines. 
+            Fig. 5: Comparison among various pipelines. 
             (a) Vanilla action chunking with open-loop control during the chunk execution. 
             (b) Action chunking enhanced with temporal ensembling for semi-closed-loop control. 
             (c) Our slow-fast inference pipeline, showcasing closed-loop capabilities with fast responsive adjustments. 
@@ -1064,7 +1086,7 @@
                   alt="TactAR User Study">
           </div>
           <p>
-            Fig. 5: We conduct a user study involving 10 users with different levels of experience
+            Fig. 6: We conduct a user study involving 10 users with different levels of experience
             in VR teleoperation or Imitation Learning (IL).
             Each pair of users participate in the experiments on the <em>Peeling</em> task, whereby
             one user teleoperate the robotic arm to peel a cucumber and the other held the cucumber.
@@ -1082,7 +1104,7 @@
                   alt="Data Quality of Different Teleoperation Methods">
           </div>
           <p>
-            Fig. 6: During the user study, each user conducts 10 trials for traditional teleoperation and TactAR, respectively. 
+            Fig. 7: During the user study, each user conducts 10 trials for traditional teleoperation and TactAR, respectively. 
             We record the length of the cucumber peel obtained in each trial and 
             assess whether the force applied by the robotic arm was consistently stable from the perspective of the user holding the cucumber. 
             The result shows that  tactile / force feedback in TactAR can greatly improve the data quality 
@@ -1098,7 +1120,7 @@
                 alt="Policy Performance with Different Teleoperation Methods">
           </div>
           <p>
-            Fig. 7: We collect the same number of demonstrations (60) for Peeling task
+            Fig. 8: We collect the same number of demonstrations (60) for Peeling task
             with traditional VR teleoperation without tactile / force feedback and 
             train RDP (force) with these data.
             The result demonstrates that data quality has a large influence on policy performance (the score decreases by more than 30%). 
